@@ -1,6 +1,6 @@
 interface ButtonProps {
     onClick: () => {};
-    className: string;
+    className?: string;
     title: string;
 }
 

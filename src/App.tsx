@@ -5,7 +5,6 @@ import Content from './components/Content'
 import MainBody from './components/MainBody'
 
 function App() {
-
   return (
     <MainBody>
       <Nav />
