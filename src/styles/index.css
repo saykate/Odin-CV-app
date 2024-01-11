@@ -38,8 +38,13 @@ h1, h2, h3 {
   isolation: isolate;
 }
 
-:root {
- color: redorange;
+@media (max-width: 750px){
+    .mainBody {
+      grid-template-areas: 
+      "sidebar"
+      "nav"
+      "content"
+      ;
+    }
 }
-
 

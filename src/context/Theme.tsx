@@ -1,39 +1,41 @@
 import { createContext, useState, FC, ReactNode } from "react";
 
 type Colors = {
-  primary: string;
-  secondary: string;
+  primaryLight: string,
+  primaryMedium: string, 
+  primaryDark: string,
+  accent: string,
 }
 
 type ColorTheme = {
   light: Colors;
   dark: Colors;
-  kinda: Colors;
 }
 
 const colors: ColorTheme = {
   light: {
-    primary: "black",
-    secondary: "teal",
+    primaryLight: "#fffae5",
+    primaryMedium: "#fff6cc", 
+    primaryDark: "#ffee99",
+    accent: "#2d2a32",
   },
 
   dark: {
-    primary: "white",
-    secondary: "#ff4433",
+    primaryLight: "#468faf",
+    primaryMedium: "#2a6f97", 
+    primaryDark: "#01497c",
+    accent: "#f8edeb",
   },
 
-  kinda: {
-    primary: "yellow", 
-    secondary: "limegreen"
-  }
 }
 
 type ThemeContextType = {
   toggleTheme: () => void;
   flavor: Colors;
+  theme: keyof typeof colors;
 }
 
-export const ThemeContext = createContext<ThemeContextType>({ toggleTheme: () => {}, flavor: {primary: "", secondary: ""} })
+export const ThemeContext = createContext<ThemeContextType>({ toggleTheme: () => {}, flavor: {primaryLight: "", primaryMedium: "", primaryDark: "", accent: "",} })
 
 const ThemeWrapper: FC<{ children: ReactNode }> = ({ children }) => {
     const [theme, setTheme] = useState('light' as keyof typeof colors)
@@ -43,7 +45,7 @@ const ThemeWrapper: FC<{ children: ReactNode }> = ({ children }) => {
     const flavor = colors[theme]
 
     return (
-        <ThemeContext.Provider value={{toggleTheme, flavor}}>
+        <ThemeContext.Provider value={{toggleTheme, flavor, theme}}>
           { children }
         </ThemeContext.Provider>
 

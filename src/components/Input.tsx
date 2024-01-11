@@ -21,7 +21,6 @@ export default Input
 const InputContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: lightyellow;
     input {
         border-radius: 5px;
     }
