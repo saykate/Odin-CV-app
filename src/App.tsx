@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Nav from './components/Nav'
+import Header from './components/Header'
 import Sidebar  from './components/Sidebar'
 import Content from './components/Content'
 import MainBody from './components/MainBody'
@@ -33,7 +33,7 @@ function App() {
 
   return (
     <MainBody>
-      <Nav personalData={personalData} />
+      <Header personalData={personalData} />
       <Sidebar 
         personalData={personalData} 
         handlePersonalDataChange={handlePersonalDataChange}

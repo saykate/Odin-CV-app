@@ -22,7 +22,7 @@ const MainBodyContainer = styled.div`
   grid-template-columns: 2fr 4fr;
   grid-template-rows: 1fr 3fr;
   grid-template-areas:
-    "sidebar nav"
+    "sidebar header"
     "sidebar body";
 
   // @media (max-width: 750px){
@@ -30,7 +30,7 @@ const MainBodyContainer = styled.div`
   //     grid-template-rows: 1fr 1fr 1fr;
   //     grid-template-areas: 
   //     "sidebar"
-  //     "nav"
+  //     "header"
   //     "body"
   //     ;
   //   }
