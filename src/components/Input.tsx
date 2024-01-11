@@ -4,14 +4,17 @@ import { FC } from 'react';
 interface InputProps {
     type: string, 
     name: string, 
+    id: string,
+    value: string,
     placeholder: string,
+    onChange: () => void
 }
 
-const Input: FC<InputProps> = ({ type, name, placeholder }) => {
+const Input: FC<InputProps> = ({ type, name, id, value, placeholder, onChange }) => {
     return (
         <InputContainer>
-            <label htmlFor={name}>{name}</label>
-            <input type={type} name={name} placeholder={placeholder}/>
+            <label htmlFor={id}>{name}</label>
+            <input type={type} name={name} id={id} value={value} placeholder={placeholder} onChange={onChange} />
         </InputContainer>
     )
 }

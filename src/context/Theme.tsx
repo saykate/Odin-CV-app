@@ -17,14 +17,14 @@ const colors: ColorTheme = {
     primaryLight: "#fffae5",
     primaryMedium: "#fff6cc", 
     primaryDark: "#ffee99",
-    accent: "#2d2a32",
+    accent: "#01497c",
   },
 
   dark: {
     primaryLight: "#468faf",
     primaryMedium: "#2a6f97", 
     primaryDark: "#01497c",
-    accent: "#f8edeb",
+    accent: "#fffae5",
   },
 
 }
@@ -35,7 +35,7 @@ type ThemeContextType = {
   theme: keyof typeof colors;
 }
 
-export const ThemeContext = createContext<ThemeContextType>({ toggleTheme: () => {}, flavor: {primaryLight: "", primaryMedium: "", primaryDark: "", accent: "",} })
+export const ThemeContext = createContext<ThemeContextType>({ toggleTheme: () => {}, flavor: {primaryLight: "", primaryMedium: "", primaryDark: "", accent: "",}, theme: "light" })
 
 const ThemeWrapper: FC<{ children: ReactNode }> = ({ children }) => {
     const [theme, setTheme] = useState('light' as keyof typeof colors)

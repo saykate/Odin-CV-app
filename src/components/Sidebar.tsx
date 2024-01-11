@@ -2,20 +2,53 @@ import styled from 'styled-components';
 import Form from './Form';
 import Input from './Input';
 import Button from './Button'
-import { useContext } from 'react';
+import { useContext, FC } from 'react';
 import { ThemeContext } from '../context/Theme';
+import { PersonalData } from '../App';
 
-const Sidebar = () => {
+
+export type SideBarTypes = {
+    personalData: PersonalData;
+    handlePersonalDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handlePersonalDataSubmit: () => void;
+  }
+
+const Sidebar: FC<SideBarTypes> = ({ handlePersonalDataChange, personalData, handlePersonalDataSubmit }) => {
     const theme = useContext(ThemeContext)
-    console.log(theme.theme)
+    
     return (
         <SidebarContainer color={theme.flavor.primaryDark}>
             <Button className="toggleButt" title={theme.theme === 'light' ? 'Dark Display' : 'Light Display'} onClick={theme.toggleTheme} />
-            <Form className='personalDetails'>
-                <Input type="text" name="Full Name" placeholder="Full Name" />
-                <Input type="email" name="Email" placeholder="you@email.com"/>
-                <Input type="tel" name="Phone" placeholder="888-000-0000"/>
-                <Input type="text" name="Location" placeholder="City, State"/>
+            <Form className='personalDetails' >
+                <Input 
+                    type="text" 
+                    name="Full Name" 
+                    id='fullName'
+                    value={personalData.fullName}
+                    placeholder="Full Name" 
+                    onChange={handlePersonalDataChange} />
+                <Input 
+                    type="email" 
+                    name="Email" 
+                    id='email'
+                    value={personalData.email}
+                    placeholder="you@email.com"
+                    onChange={handlePersonalDataChange} />
+                <Input 
+                    type="tel" 
+                    name="Phone" 
+                    id='phone'
+                    value={personalData.phone}
+                    placeholder="888-000-0000"
+                    onChange={handlePersonalDataChange} />
+                <Input 
+                    type="text" 
+                    name="Location" 
+                    id='location'
+                    value={personalData.location}
+                    placeholder="City, State"
+                    onChange={handlePersonalDataChange} />
+                <Button onClick={handlePersonalDataSubmit} title='Save'/>
             </Form>
         </SidebarContainer>
     )

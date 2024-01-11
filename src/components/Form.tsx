@@ -4,13 +4,13 @@ import { ThemeContext } from '../context/Theme';
 
 type Props = {
     children: ReactNode;
-    className: string;
+    className?: string;
 }
 
 const Form: FC<Props> = ({ children, className }) => {
     const theme = useContext(ThemeContext)
     return (
-        <FormContainer className={className} color={theme.flavor.primaryLight}>
+        <FormContainer className={className} color={theme.flavor.primaryLight} >
           {children}
         </FormContainer>
     )
