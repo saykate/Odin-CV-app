@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Sidebar  from './components/Sidebar'
 import Content from './components/Content'
@@ -12,30 +12,32 @@ export type PersonalData = {
 }
 
 function App() {
-  const [personalData, setPersonalData] = useState<PersonalData>({
+  const [formPersonalData, setFormPersonalData] = useState<PersonalData>({
     fullName: "",
     email: "", 
     phone: "", 
     location: "",
   })
 
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
   function handlePersonalDataChange(e: React.ChangeEvent<HTMLInputElement>) {
     console.log({[e.target.id]: e.target.value})
-    setPersonalData((prevData) => ({
+    setFormPersonalData((prevData) => ({
       ...prevData, 
       [e.target.id]: e.target.value,
     }));
   }
 
   function handlePersonalDataSubmit() {
-    
+    setIsFormSubmitted(true);
   }
 
   return (
     <MainBody>
-      <Header personalData={personalData} />
+      <Header personalData={formPersonalData} isFormSubmitted={isFormSubmitted}/>
       <Sidebar 
-        personalData={personalData} 
+        personalData={formPersonalData} 
         handlePersonalDataChange={handlePersonalDataChange}
         handlePersonalDataSubmit={handlePersonalDataSubmit}
         />

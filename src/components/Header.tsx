@@ -5,16 +5,17 @@ import { PersonalData } from '../App'
 
 type HeaderProps = {
     personalData: PersonalData;
+    isFormSubmitted: boolean;
 }
 
-const Header: FC<HeaderProps> = ({ personalData }) => {
+const Header: FC<HeaderProps> = ({ personalData, isFormSubmitted }) => {
     const theme = useContext(ThemeContext)
     return (
         <HeaderContainer color={theme.flavor.primaryMedium}>
-            <h1>{personalData.fullName}</h1>
-            <p className='email'>{personalData.email}</p>
-            <p className='phone'>{personalData.phone}</p>
-            <p className='location'>{personalData.location}</p>
+            <h1>{isFormSubmitted ? personalData.fullName : ''}</h1>
+            <p>{isFormSubmitted ? personalData.email : ''}</p>
+            <p>{isFormSubmitted ? personalData.phone : ''}</p>
+            <p>{isFormSubmitted ? personalData.location : ''}</p>
         </HeaderContainer>
     )
 }
