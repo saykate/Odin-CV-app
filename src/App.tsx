@@ -29,13 +29,22 @@ function App() {
     }));
   }
 
-  function handlePersonalDataSubmit() {
+  function handlePersonalDataSubmit(e: { preventDefault: () => void }) {
+    e.preventDefault();
     setIsFormSubmitted(true);
+  }
+
+  function handleEditClick(e) {
+    e.preventDefault();
+    // setFormPersonalData()
   }
 
   return (
     <MainBody>
-      <Header personalData={formPersonalData} isFormSubmitted={isFormSubmitted}/>
+      <Header 
+        personalData={formPersonalData} 
+        isFormSubmitted={isFormSubmitted} 
+        handleEditClick={handleEditClick}/>
       <Sidebar 
         personalData={formPersonalData} 
         handlePersonalDataChange={handlePersonalDataChange}
