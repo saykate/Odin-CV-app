@@ -4,16 +4,19 @@ import Input from './Input';
 import Button from './Button'
 import { useContext, FC } from 'react';
 import { ThemeContext } from '../context/Theme';
-import { PersonalData } from '../App';
-
+import { PersonalData, EducationData, ExperienceData } from '../App';
 
 export type SideBarTypes = {
     personalData: PersonalData;
+    educationData: EducationData;
+    experienceData: ExperienceData;
     handlePersonalDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handlePersonalDataSubmit: () => void;
+    handleEducationDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleExperienceDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   }
 
-const Sidebar: FC<SideBarTypes> = ({ handlePersonalDataChange, personalData, handlePersonalDataSubmit }) => {
+const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData, handlePersonalDataChange, handlePersonalDataSubmit, handleEducationDataChange, handleExperienceDataChange }) => {
     const theme = useContext(ThemeContext)
     
     return (
@@ -48,6 +51,89 @@ const Sidebar: FC<SideBarTypes> = ({ handlePersonalDataChange, personalData, han
                     value={personalData.location}
                     placeholder="City, State"
                     onChange={handlePersonalDataChange} />
+                <Button onClick={handlePersonalDataSubmit} title='Save'/>
+            </Form>
+            <Form className='educationDetails' >
+                <Input 
+                    type="text" 
+                    name="Name of School" 
+                    id='schoolName'
+                    value={educationData.school}
+                    placeholder="School" 
+                    onChange={handleEducationDataChange} />
+                <Input 
+                    type="email" 
+                    name="Email" 
+                    id='email'
+                    value={educationData.fieldOfStudy}
+                    placeholder="you@email.com"
+                    onChange={handleEducationDataChange} />
+                <Input 
+                    type="date" 
+                    name="Start Date" 
+                    id='startDate'
+                    value={educationData.startDate}
+                    placeholder="00/00/0000"
+                    onChange={handleEducationDataChange} />
+                <Input 
+                    type="date" 
+                    name="End Date" 
+                    id='endDate'
+                    value={educationData.endDate}
+                    placeholder="00/00/0000"
+                    onChange={handleEducationDataChange} />
+                <Input 
+                    type="text" 
+                    name="Location" 
+                    id='location'
+                    value={educationData.location}
+                    placeholder="City, State"
+                    onChange={handleEducationDataChange} />
+                <Button onClick={handlePersonalDataSubmit} title='Save'/>
+            </Form>
+            <Form className='experienceDetails' >
+                <Input 
+                    type="text" 
+                    name="Company Name" 
+                    id='companyName'
+                    value={experienceData.company}
+                    placeholder="Company" 
+                    onChange={handleExperienceDataChange} />
+                <Input 
+                    type="text" 
+                    name="Position" 
+                    id='position'
+                    value={experienceData.position}
+                    placeholder="position held"
+                    onChange={handleExperienceDataChange} />
+                <Input 
+                    type="date" 
+                    name="Start Date" 
+                    id='startDate'
+                    value={experienceData.startDate}
+                    placeholder="00/00/0000"
+                    onChange={handleExperienceDataChange} />
+                <Input 
+                    type="date" 
+                    name="End Date" 
+                    id='endDate'
+                    value={experienceData.endDate}
+                    placeholder="00/00/0000"
+                    onChange={handleExperienceDataChange} />
+                <Input 
+                    type="text" 
+                    name="Location" 
+                    id='location'
+                    value={experienceData.location}
+                    placeholder="City, State"
+                    onChange={handleExperienceDataChange} />
+                <Input 
+                    type="textbox" 
+                    name="Description" 
+                    id='description'
+                    value={experienceData.description}
+                    placeholder="about your postion"
+                    onChange={handleExperienceDataChange} />
                 <Button onClick={handlePersonalDataSubmit} title='Save'/>
             </Form>
         </SidebarContainer>

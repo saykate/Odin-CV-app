@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useContext, FC } from 'react';
 import { ThemeContext } from '../context/Theme';
 import { PersonalData } from '../App'
-import Button from './Button'
 import pencil from '../assets/pencil.svg';
 
 type HeaderProps = {
