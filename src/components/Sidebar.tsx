@@ -11,12 +11,14 @@ export type SideBarTypes = {
     educationData: EducationData;
     experienceData: ExperienceData;
     handlePersonalDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handlePersonalDataSubmit: () => void;
+    handlePersonalDataSubmit: (e: { preventDefault: () => void }) => void;
     handleEducationDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleEducationDataSubmit: (e: { preventDefault: () => void }) => void;
     handleExperienceDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleExperienceDataSubmit: (e: { preventDefault: () => void }) => void;
   }
 
-const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData, handlePersonalDataChange, handlePersonalDataSubmit, handleEducationDataChange, handleExperienceDataChange }) => {
+const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData, handlePersonalDataChange, handlePersonalDataSubmit, handleEducationDataChange, handleEducationDataSubmit, handleExperienceDataChange, handleExperienceDataSubmit }) => {
     const theme = useContext(ThemeContext)
     
     return (
@@ -57,16 +59,16 @@ const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData
                 <Input 
                     type="text" 
                     name="Name of School" 
-                    id='schoolName'
+                    id='school'
                     value={educationData.school}
                     placeholder="School" 
                     onChange={handleEducationDataChange} />
                 <Input 
-                    type="email" 
-                    name="Email" 
-                    id='email'
+                    type="text" 
+                    name="Field of Study" 
+                    id='fieldOfStudy'
                     value={educationData.fieldOfStudy}
-                    placeholder="you@email.com"
+                    placeholder="field of study"
                     onChange={handleEducationDataChange} />
                 <Input 
                     type="date" 
@@ -89,13 +91,13 @@ const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData
                     value={educationData.location}
                     placeholder="City, State"
                     onChange={handleEducationDataChange} />
-                <Button onClick={handlePersonalDataSubmit} title='Save'/>
+                <Button onClick={handleEducationDataSubmit} title='Save'/>
             </Form>
             <Form className='experienceDetails' >
                 <Input 
                     type="text" 
                     name="Company Name" 
-                    id='companyName'
+                    id='company'
                     value={experienceData.company}
                     placeholder="Company" 
                     onChange={handleExperienceDataChange} />
@@ -134,7 +136,7 @@ const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData
                     value={experienceData.description}
                     placeholder="about your postion"
                     onChange={handleExperienceDataChange} />
-                <Button onClick={handlePersonalDataSubmit} title='Save'/>
+                <Button onClick={handleExperienceDataSubmit} title='Save'/>
             </Form>
         </SidebarContainer>
     )

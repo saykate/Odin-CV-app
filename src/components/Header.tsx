@@ -6,19 +6,18 @@ import pencil from '../assets/pencil.svg';
 
 type HeaderProps = {
     personalData: PersonalData;
-    isFormSubmitted: boolean;
-    handleEditClick: () => void;
+    handleHeaderEditClick: (e: { preventDefault: () => void }) => void;
 }
 
-const Header: FC<HeaderProps> = ({ personalData, isFormSubmitted, handleEditClick }) => {
+const Header: FC<HeaderProps> = ({ personalData, handleHeaderEditClick }) => {
     const theme = useContext(ThemeContext)
     return (
         <HeaderContainer color={theme.flavor.primaryMedium}>
-            <a onClick={handleEditClick}><img src={pencil} alt="edit"/></a>
-            <h1>{isFormSubmitted ? personalData.fullName : ''}</h1>
-            <p>{isFormSubmitted ? personalData.email : ''}</p>
-            <p>{isFormSubmitted ? personalData.phone : ''}</p>
-            <p>{isFormSubmitted ? personalData.location : ''}</p>
+            <a onClick={handleHeaderEditClick}><img src={pencil} alt="edit"/></a>
+            <h1>{personalData.fullName}</h1>
+            <p>{personalData.email}</p>
+            <p>{personalData.phone}</p>
+            <p>{personalData.location}</p>
         </HeaderContainer>
     )
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Header from './components/Header'
 import Sidebar  from './components/Sidebar'
 import Content from './components/Content'
@@ -28,43 +28,52 @@ export type ExperienceData = {
   description: string;
 }
 
+const PERSONAL_DATA_INITIAL_STATE = {
+  fullName: "",
+  email: "", 
+  phone: "", 
+  location: "",
+}
+
+const EDUCATION_DATA_INITIAL_STATE = {
+  school: "",
+  fieldOfStudy: "",
+  startDate: "",
+  endDate: "",
+  location: ""
+}
+
+const EXPERIENCE_DATA_INITIAL_STATE = {
+  company: "",
+  position: "",
+  startDate: "",
+  endDate: "",
+  location: "",
+  description: "",
+}
+
 function App() {
-  const [formPersonalData, setFormPersonalData] = useState<PersonalData>({
-    fullName: "",
-    email: "", 
-    phone: "", 
-    location: "",
-  })
+  const [formPersonalData, setFormPersonalData] = useState<PersonalData>({...PERSONAL_DATA_INITIAL_STATE})
 
-  const [formEducationData, setFormEducationData] = useState<EducationData>({
-    school: "",
-    fieldOfStudy: "",
-    startDate: "",
-    endDate: "",
-    location: ""
-  })
+  const [headerPersonalData, setHeaderPersonalData] = useState<PersonalData>({...PERSONAL_DATA_INITIAL_STATE})
 
-  const [formExperienceData, setFormExperienceData] = useState<ExperienceData>({
-    company: "",
-    position: "",
-    startDate: "",
-    endDate: "",
-    location: "",
-    description: "",
-  })
+  const [formEducationData, setFormEducationData] = useState<EducationData>({...EDUCATION_DATA_INITIAL_STATE})
 
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [contentEducationData, setContentEducationData] = useState<EducationData>({...EDUCATION_DATA_INITIAL_STATE})
+
+  const [formExperienceData, setFormExperienceData] = useState<ExperienceData>({...EXPERIENCE_DATA_INITIAL_STATE})
+
+  const [contentExperienceData, setContentExperienceData] = useState<ExperienceData>({...EXPERIENCE_DATA_INITIAL_STATE})
 
   function handlePersonalDataChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log({[e.target.id]: e.target.value})
     setFormPersonalData((prevData) => ({
       ...prevData, 
       [e.target.id]: e.target.value,
     }));
+
   }
 
   function handleEducationDataChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log({[e.target.id]: e.target.value})
     setFormEducationData((prevData) => ({
       ...prevData, 
       [e.target.id]: e.target.value,
@@ -72,7 +81,6 @@ function App() {
   }
 
   function handleExperienceDataChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log({[e.target.id]: e.target.value})
     setFormExperienceData((prevData) => ({
       ...prevData, 
       [e.target.id]: e.target.value,
@@ -81,26 +89,42 @@ function App() {
 
   function handlePersonalDataSubmit(e: { preventDefault: () => void }) {
     e.preventDefault();
-    setIsFormSubmitted(true);
-    setFormPersonalData({
-      fullName: "",
-      email: "", 
-      phone: "", 
-      location: "",
-    })
+    setHeaderPersonalData({...formPersonalData})
+    setFormPersonalData({...PERSONAL_DATA_INITIAL_STATE})
   }
 
-  function handleEditClick(e) {
+  function handleEducationDataSubmit(e: { preventDefault: () => void }) {
     e.preventDefault();
-    // setFormPersonalData()
+    setContentEducationData({...formEducationData})
+    setFormEducationData({...EDUCATION_DATA_INITIAL_STATE})
+  }
+
+  function handleExperienceDataSubmit(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    setContentExperienceData({...formExperienceData})
+    setFormExperienceData({...EXPERIENCE_DATA_INITIAL_STATE})
+  }
+
+  function handleHeaderEditClick(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    setFormPersonalData({...headerPersonalData})
+  }
+
+  function handleContentEducationEditClick(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    setFormEducationData({...contentEducationData})
+  }
+
+  function handleContentExperienceEditClick(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    setFormExperienceData({...contentExperienceData})
   }
 
   return (
     <MainBody>
       <Header 
-        personalData={formPersonalData} 
-        isFormSubmitted={isFormSubmitted} 
-        handleEditClick={handleEditClick}
+        personalData={headerPersonalData} 
+        handleHeaderEditClick={handleHeaderEditClick}
         />
       <Sidebar 
         personalData={formPersonalData} 
@@ -109,13 +133,15 @@ function App() {
         handlePersonalDataChange={handlePersonalDataChange}
         handlePersonalDataSubmit={handlePersonalDataSubmit}
         handleEducationDataChange={handleEducationDataChange}
-        handleExperienceDataChange={handleEducationDataChange}
+        handleEducationDataSubmit={handleEducationDataSubmit}
+        handleExperienceDataChange={handleExperienceDataChange}
+        handleExperienceDataSubmit={handleExperienceDataSubmit}
         />
       <Content 
-        educationData={formEducationData}
-        experienceData={formExperienceData}
-        isFormSubmitted={isFormSubmitted} 
-        handleEditClick={handleEditClick}
+        educationData={contentEducationData}
+        experienceData={contentExperienceData}
+        handleContentEducationEditClick={handleContentEducationEditClick}
+        handleContentExperienceEditClick={handleContentExperienceEditClick}
         />
     </MainBody>
   )
