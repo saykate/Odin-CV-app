@@ -120,6 +120,21 @@ function App() {
     setFormExperienceData({...contentExperienceData})
   }
 
+  function handlePersonalDataClear(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    setFormPersonalData({...PERSONAL_DATA_INITIAL_STATE})
+  }
+
+  function handleEducationDataClear(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    setFormEducationData({...EDUCATION_DATA_INITIAL_STATE})
+  }
+
+  function handleExperienceDataClear(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    setFormExperienceData({...EXPERIENCE_DATA_INITIAL_STATE})
+  }
+
   return (
     <MainBody>
       <Header 
@@ -132,10 +147,13 @@ function App() {
         experienceData={formExperienceData}
         handlePersonalDataChange={handlePersonalDataChange}
         handlePersonalDataSubmit={handlePersonalDataSubmit}
+        handlePersonalDataClear={handlePersonalDataClear}
         handleEducationDataChange={handleEducationDataChange}
         handleEducationDataSubmit={handleEducationDataSubmit}
+        handleEducationDataClear={handleEducationDataClear}
         handleExperienceDataChange={handleExperienceDataChange}
         handleExperienceDataSubmit={handleExperienceDataSubmit}
+        handleExperienceDataClear={handleExperienceDataClear}
         />
       <Content 
         educationData={contentEducationData}

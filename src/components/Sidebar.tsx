@@ -12,13 +12,16 @@ export type SideBarTypes = {
     experienceData: ExperienceData;
     handlePersonalDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handlePersonalDataSubmit: (e: { preventDefault: () => void }) => void;
+    handlePersonalDataClear: (e: { preventDefault: () => void }) => void;
     handleEducationDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleEducationDataSubmit: (e: { preventDefault: () => void }) => void;
+    handleEducationDataClear: (e: { preventDefault: () => void }) => void;
     handleExperienceDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleExperienceDataSubmit: (e: { preventDefault: () => void }) => void;
+    handleExperienceDataClear: (e: { preventDefault: () => void }) => void;
   }
 
-const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData, handlePersonalDataChange, handlePersonalDataSubmit, handleEducationDataChange, handleEducationDataSubmit, handleExperienceDataChange, handleExperienceDataSubmit }) => {
+const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData, handlePersonalDataChange, handlePersonalDataSubmit, handlePersonalDataClear, handleEducationDataChange, handleEducationDataSubmit, handleEducationDataClear, handleExperienceDataChange, handleExperienceDataSubmit, handleExperienceDataClear }) => {
     const theme = useContext(ThemeContext)
     
     return (
@@ -53,7 +56,10 @@ const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData
                     value={personalData.location}
                     placeholder="City, State"
                     onChange={handlePersonalDataChange} />
-                <Button onClick={handlePersonalDataSubmit} title='Save'/>
+                <div className='buttons'>
+                    <Button onClick={handlePersonalDataSubmit} title='Save'/>
+                    <Button onClick={handlePersonalDataClear} title='Clear'/>
+                </div>
             </Form>
             <Form className='educationDetails' >
                 <Input 
@@ -91,7 +97,10 @@ const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData
                     value={educationData.location}
                     placeholder="City, State"
                     onChange={handleEducationDataChange} />
-                <Button onClick={handleEducationDataSubmit} title='Save'/>
+                <div className='buttons'>
+                    <Button onClick={handleEducationDataSubmit} title='Save'/>
+                    <Button onClick={handleEducationDataClear} title='Clear'/>
+                </div>
             </Form>
             <Form className='experienceDetails' >
                 <Input 
@@ -136,7 +145,10 @@ const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData
                     value={experienceData.description}
                     placeholder="about your postion"
                     onChange={handleExperienceDataChange} />
-                <Button onClick={handleExperienceDataSubmit} title='Save'/>
+                <div className='buttons'>
+                    <Button onClick={handleExperienceDataSubmit} title='Save'/>
+                    <Button onClick={handleExperienceDataClear} title='Clear'/>
+                </div>
             </Form>
         </SidebarContainer>
     )
@@ -151,4 +163,12 @@ const SidebarContainer = styled.div`
     background-color: ${props => props.color};
     grid-area: sidebar;
     padding: 2rem;
+    .buttons {
+        width: 100%;
+        display: flex;
+        gap: .5rem;
+    }
+    button {
+        flex: 1;
+    }
 `;
