@@ -38,7 +38,7 @@ const HeaderContainer = styled.div`
         top: 1rem;
     }
     h1 {
-        font-size: 4rem
+        font-size: 3rem
     }
     p {
         font-size: 1.5rem
