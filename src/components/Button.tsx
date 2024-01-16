@@ -22,4 +22,5 @@ const ButtonContainer = styled.button `
     border-radius: 5px;
     border: none;
     background-color: ${props => props.color};
+    color: inherit;
 `
