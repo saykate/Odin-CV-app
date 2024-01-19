@@ -13,10 +13,13 @@ type ContentProps = {
 
 const Content: FC<ContentProps> = ({ educationData, experienceData, handleContentEducationEditClick, handleContentExperienceEditClick }) => {
     const theme = useContext(ThemeContext)
+    const hasEduContent = educationData.school || educationData.fieldOfStudy || educationData.startDate || educationData.endDate || educationData.location;
+    const hasExpContent = experienceData.company || experienceData.position || experienceData.startDate || experienceData.endDate || experienceData.location || experienceData.description; 
+
     return (
         <ContentContainer color={theme.flavor.primaryLight}>
             <div>
-                <a onClick={handleContentEducationEditClick}><img src={pencil} alt="edit"/></a>
+                {hasEduContent && <a onClick={handleContentEducationEditClick}><img src={pencil} alt="edit"/></a>}
                 <h2>Education</h2>
                 <h3>{educationData.school}</h3>
                 <p>{educationData.fieldOfStudy}</p>
@@ -25,7 +28,7 @@ const Content: FC<ContentProps> = ({ educationData, experienceData, handleConten
                 <p>{educationData.location}</p>
             </div>
             <div>
-                <a onClick={handleContentExperienceEditClick}><img src={pencil} alt="edit"/></a>
+                {hasExpContent && <a onClick={handleContentExperienceEditClick}><img src={pencil} alt="edit"/></a>}
                 <h2>Experience</h2>
                 <h3>{experienceData.company}</h3>
                 <p>{experienceData.position}</p>

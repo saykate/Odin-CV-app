@@ -11,9 +11,11 @@ type HeaderProps = {
 
 const Header: FC<HeaderProps> = ({ personalData, handleHeaderEditClick }) => {
     const theme = useContext(ThemeContext)
+    const hasContenet = personalData.fullName || personalData.email || personalData.phone || personalData.location;
+    
     return (
         <HeaderContainer color={theme.flavor.primaryMedium}>
-            <a onClick={handleHeaderEditClick}><img src={pencil} alt="edit"/></a>
+            {hasContenet && <a onClick={handleHeaderEditClick}><img src={pencil} alt="edit"/></a>}
             <h1>{personalData.fullName}</h1>
             <p>{personalData.email}</p>
             <p>{personalData.phone}</p>
