@@ -24,7 +24,7 @@ const Header: FC<HeaderProps> = ({ personalData, handleHeaderEditClick }) => {
     )
 }
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
     position: relative;
     background-color: ${props => props.color};
     grid-area: header;

@@ -15,7 +15,7 @@ const MainBody: FC<Props> = ({ children }) => {
     );
 };
 
-const MainBodyContainer = styled.div`
+const MainBodyContainer = styled.main`
   color: ${props => props.color};
   // height: 100vh;
   display: grid;

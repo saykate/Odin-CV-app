@@ -156,7 +156,7 @@ const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData
 
 export default Sidebar
 
-const SidebarContainer = styled.div`
+const SidebarContainer = styled.aside`
     display: flex;
     flex-direction: column;
     gap: 1rem;
