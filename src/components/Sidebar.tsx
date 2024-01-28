@@ -34,7 +34,8 @@ const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData
                     id='fullName'
                     value={personalData.fullName}
                     placeholder="Full Name" 
-                    onChange={handlePersonalDataChange} />
+                    onChange={handlePersonalDataChange} 
+                />
                 <Input 
                     type="email" 
                     name="Email" 
@@ -57,7 +58,7 @@ const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData
                     placeholder="City, State"
                     onChange={handlePersonalDataChange} />
                 <div className='buttons'>
-                    <Button onClick={handlePersonalDataSubmit} title='Save'/>
+                    {personalData.fullName && personalData.email && personalData.phone && personalData.location && <Button onClick={handlePersonalDataSubmit} title='Save'/>}
                     <Button onClick={handlePersonalDataClear} title='Clear'/>
                 </div>
             </Form>
@@ -98,7 +99,7 @@ const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData
                     placeholder="City, State"
                     onChange={handleEducationDataChange} />
                 <div className='buttons'>
-                    <Button onClick={handleEducationDataSubmit} title='Save'/>
+                    {educationData.school && educationData.fieldOfStudy && educationData.startDate && educationData.endDate && educationData.location && <Button onClick={handleEducationDataSubmit} title='Save'/>}
                     <Button onClick={handleEducationDataClear} title='Clear'/>
                 </div>
             </Form>
@@ -146,7 +147,7 @@ const Sidebar: FC<SideBarTypes> = ({ personalData, educationData, experienceData
                     placeholder="about your postion"
                     onChange={handleExperienceDataChange} />
                 <div className='buttons'>
-                    <Button onClick={handleExperienceDataSubmit} title='Save'/>
+                    {experienceData.position && experienceData.startDate && experienceData.endDate && experienceData.location && experienceData.description && <Button onClick={handleExperienceDataSubmit} title='Save'/>}
                     <Button onClick={handleExperienceDataClear} title='Clear'/>
                 </div>
             </Form>

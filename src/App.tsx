@@ -135,11 +135,30 @@ function App() {
     setFormExperienceData({...EXPERIENCE_DATA_INITIAL_STATE})
   }
 
+  function handleDeleteClick(dataType: 'personal' | 'education' | 'experience', e: { preventDefault: () => void }) {
+    e.preventDefault();
+    
+    switch (dataType) {
+      case 'personal':
+        setHeaderPersonalData({...PERSONAL_DATA_INITIAL_STATE});
+        break;
+      case 'education':
+        setContentEducationData({...EDUCATION_DATA_INITIAL_STATE});
+        break;
+      case 'experience':
+        setContentExperienceData({...EXPERIENCE_DATA_INITIAL_STATE});
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <MainBody>
       <Header 
         personalData={headerPersonalData} 
         handleHeaderEditClick={handleHeaderEditClick}
+        handleDeleteClick={(e) => handleDeleteClick('personal', e)}
         />
       <Sidebar 
         personalData={formPersonalData} 
@@ -160,6 +179,7 @@ function App() {
         experienceData={contentExperienceData}
         handleContentEducationEditClick={handleContentEducationEditClick}
         handleContentExperienceEditClick={handleContentExperienceEditClick}
+        handleDeleteClick={(dataType, e) => handleDeleteClick(dataType, e)}
         />
     </MainBody>
   )

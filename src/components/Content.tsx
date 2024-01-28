@@ -3,23 +3,32 @@ import { useContext, FC } from 'react';
 import { ThemeContext } from '../context/Theme'
 import { EducationData, ExperienceData } from '../App';
 import pencil from '../assets/pencil.svg';
+import trashCan from '../assets/trashCan.svg';
 
 type ContentProps = {
     educationData: EducationData;
     experienceData: ExperienceData;
     handleContentEducationEditClick: (e: { preventDefault: () => void }) => void;
     handleContentExperienceEditClick: (e: { preventDefault: () => void }) => void;
+    handleDeleteClick: (dataType: 'education' | 'experience', e: { preventDefault: () => void }) => void;
 }
 
-const Content: FC<ContentProps> = ({ educationData, experienceData, handleContentEducationEditClick, handleContentExperienceEditClick }) => {
+const Content: FC<ContentProps> = ({ 
+    educationData, 
+    experienceData, 
+    handleContentEducationEditClick, 
+    handleContentExperienceEditClick, 
+    handleDeleteClick 
+}) => {
     const theme = useContext(ThemeContext)
     const hasEduContent = educationData.school || educationData.fieldOfStudy || educationData.startDate || educationData.endDate || educationData.location;
     const hasExpContent = experienceData.company || experienceData.position || experienceData.startDate || experienceData.endDate || experienceData.location || experienceData.description; 
 
     return (
         <ContentContainer color={theme.flavor.primaryLight}>
-            <div>
-                {hasEduContent && <a onClick={handleContentEducationEditClick}><img src={pencil} alt="edit"/></a>}
+            <div className='eduContainer'>
+                {hasEduContent && <a onClick={handleContentEducationEditClick}><img src={pencil} alt="edit" className='pencil'/></a>}
+                {hasEduContent && <a onClick={(e) => handleDeleteClick('education', e)}><img src={trashCan} alt="delete" className='trashcan'/></a>}
                 <h2>Education</h2>
                 <h3>{educationData.school}</h3>
                 <p>{educationData.fieldOfStudy}</p>
@@ -27,8 +36,9 @@ const Content: FC<ContentProps> = ({ educationData, experienceData, handleConten
                 <p>{educationData.endDate}</p>
                 <p>{educationData.location}</p>
             </div>
-            <div>
-                {hasExpContent && <a onClick={handleContentExperienceEditClick}><img src={pencil} alt="edit"/></a>}
+            <div className='expContainer'>
+                {hasExpContent && <a onClick={handleContentExperienceEditClick}><img src={pencil} alt="edit" className='pencil'/></a>}
+                {hasExpContent && <a onClick={(e) => handleDeleteClick('experience', e)}><img src={trashCan} alt="delete" className='trashcan'/></a>} 
                 <h2>Experience</h2>
                 <h3>{experienceData.company}</h3>
                 <p>{experienceData.position}</p>
@@ -44,7 +54,6 @@ const Content: FC<ContentProps> = ({ educationData, experienceData, handleConten
 export default Content
 
 const ContentContainer = styled.div` 
-    // position: relative;
     background-color: ${props => props.color};
     grid-area: body;
     display: flex;
@@ -59,12 +68,19 @@ const ContentContainer = styled.div`
         flex-direction: column;
         width: 100%;
         padding: 1rem;
+        padding-bottom: 2rem;
     }
-    img {
+    .pencil {
         position: absolute;
-        width: 25px;
-        left: 0;
-        top: 0;
+        width: 20px;
+        left: 0rem;
+        top: 0rem;
+    }
+    .trashcan {
+        position: absolute;
+        width: 20px;
+        left: 0rem;
+        bottom: 0rem;
     }
     h2 {
         font-size: 2rem;

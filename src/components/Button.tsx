@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../context/Theme';
 
 interface ButtonProps {
-    onClick: () => void;
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
     className?: string;
     title: string;
 }
