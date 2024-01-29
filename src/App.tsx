@@ -74,17 +74,53 @@ function App() {
   }
 
   function handleEducationDataChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setFormEducationData((prevData) => ({
-      ...prevData, 
-      [e.target.id]: e.target.value,
-    }));
+    const { id, value } = e.target;
+    
+    setFormEducationData((prevData) => {
+      const updatedData = {
+        ...prevData,
+        [id]: value,
+    };
+
+    if (id === 'startDate') {
+        if (updatedData.endDate < value) {
+            updatedData.endDate = value;
+        }
+    }
+
+    if (id === 'endDate') {
+        if (updatedData.startDate > value) {
+            updatedData.startDate = value;
+        }
+    }
+
+    return updatedData;
+    });
   }
 
   function handleExperienceDataChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setFormExperienceData((prevData) => ({
-      ...prevData, 
-      [e.target.id]: e.target.value,
-    }));
+    const { id, value } = e.target;
+    
+    setFormExperienceData((prevData) => {
+      const updatedData = {
+        ...prevData,
+        [id]: value,
+    };
+
+    if (id === 'startDate') {
+        if (updatedData.endDate < value) {
+            updatedData.endDate = value;
+        }
+    }
+
+    if (id === 'endDate') {
+        if (updatedData.startDate > value) {
+            updatedData.startDate = value;
+        }
+    }
+
+    return updatedData;
+    });
   }
 
   function handlePersonalDataSubmit(e: { preventDefault: () => void }) {
